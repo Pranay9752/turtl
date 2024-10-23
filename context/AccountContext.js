@@ -7,7 +7,7 @@ export const AccountContext = createContext()
 
 export const AccountProvider = ({ children }) => {
 
-    const contractAddress = '0x26b2c35B33fe234762DBfB84268518DBcC54E47f';
+    const contractAddress = '0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B';
     const contractABI = [
         {
             "inputs": [
@@ -24,11 +24,6 @@ export const AccountProvider = ({ children }) => {
                 {
                     "internalType": "string",
                     "name": "_publicKey",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_privateKey",
                     "type": "string"
                 }
             ],
@@ -66,12 +61,6 @@ export const AccountProvider = ({ children }) => {
                 },
                 {
                     "indexed": false,
-                    "internalType": "string",
-                    "name": "privateKey",
-                    "type": "string"
-                },
-                {
-                    "indexed": false,
                     "internalType": "uint256",
                     "name": "id",
                     "type": "uint256"
@@ -82,98 +71,9 @@ export const AccountProvider = ({ children }) => {
         },
         {
             "inputs": [],
-            "name": "getAllUsers",
-            "outputs": [
-                {
-                    "components": [
-                        {
-                            "internalType": "string",
-                            "name": "username",
-                            "type": "string"
-                        },
-                        {
-                            "internalType": "string",
-                            "name": "image",
-                            "type": "string"
-                        },
-                        {
-                            "internalType": "string",
-                            "name": "publicKey",
-                            "type": "string"
-                        },
-                        {
-                            "internalType": "string",
-                            "name": "privateKey",
-                            "type": "string"
-                        },
-                        {
-                            "internalType": "uint256",
-                            "name": "id",
-                            "type": "uint256"
-                        },
-                        {
-                            "internalType": "address",
-                            "name": "userAddress",
-                            "type": "address"
-                        }
-                    ],
-                    "internalType": "struct Userregistry.User[]",
-                    "name": "",
-                    "type": "tuple[]"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
             "name": "getUser",
             "outputs": [
                 {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_address",
-                    "type": "address"
-                }
-            ],
-            "name": "getUserByAdd",
-            "outputs": [
-                {
                     "components": [
                         {
                             "internalType": "string",
@@ -191,19 +91,9 @@ export const AccountProvider = ({ children }) => {
                             "type": "string"
                         },
                         {
-                            "internalType": "string",
-                            "name": "privateKey",
-                            "type": "string"
-                        },
-                        {
                             "internalType": "uint256",
                             "name": "id",
                             "type": "uint256"
-                        },
-                        {
-                            "internalType": "address",
-                            "name": "userAddress",
-                            "type": "address"
                         }
                     ],
                     "internalType": "struct Userregistry.User",
@@ -225,73 +115,31 @@ export const AccountProvider = ({ children }) => {
             "name": "getUserByAddress",
             "outputs": [
                 {
-                    "internalType": "string",
+                    "components": [
+                        {
+                            "internalType": "string",
+                            "name": "username",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "image",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "publicKey",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "id",
+                            "type": "uint256"
+                        }
+                    ],
+                    "internalType": "struct Userregistry.User",
                     "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_address",
-                    "type": "address"
-                }
-            ],
-            "name": "getUserData",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
+                    "type": "tuple"
                 }
             ],
             "stateMutability": "view",

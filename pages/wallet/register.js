@@ -36,7 +36,7 @@ function Register() {
 
     }
     const getUserData = async () => {
-        const user = await userRegistry.methods.getUserByAdd(address).call();
+        const user = await userRegistry.methods.getUserByAddress(address).call();
         if (user.username !== '') {
             setUser(user)
         }
@@ -52,7 +52,7 @@ function Register() {
             })
 
             const tx = await userRegistry.methods.registerUser(username, image, keys.publicKey, keys.privateKey).send({ from: address });
-            const user = userRegistry.methods.getUserByAdd(address).call();
+            const user = userRegistry.methods.getUserByAddress(address).call();
             console.log(keys.privateKey)
             setPrivateKey(keys.privateKey)
             setUser(user)
