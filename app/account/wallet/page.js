@@ -61,8 +61,8 @@ function Wallet() {
             setUserRegistry(userContract);
             setUserInter(followContract)
             setPostContract(postContract)
-            // const user = await userContract.methods.getUserByAdd(selectedAddress).call();
-            // authUser(user)
+            const user = await userContract.methods.getUserByAdd(selectedAddress).call();
+            authUser(user)
 
             router.push('/account/register')
         } catch (error) {

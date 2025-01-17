@@ -29,13 +29,14 @@ export default function Home() {
     });
     const results = await Promise.allSettled(promises);
     const users = results
-      .filter((result) => result.status === 'fulfilled')
-      .map((result) => result.value);
+    .filter((result) => result.status === 'fulfilled')
+    .map((result) => result.value);
+
     setUserData((prev) => ({
       ...prev,
-      ids: users.map((user) => user.id),
-      username: users[0].username, // Set the username and image from the first user (followers list).
-      image: users[0].image,
+      ids: users?.map((user) => user.id) || [],
+      username: users?.[0]?.username || '', // Set the username and image from the first user (followers list).
+      image: users?.[0]?.image || '',
     }));
 
     const posts = await Promise.all(users.map((user) => postContract.methods.getLatestPostsForUser(user.id).call()));

@@ -55,9 +55,16 @@ function Register() {
     }
     
     useEffect(() => {
-        if(window.localStorage.getItem('image')){
-            router.push('/')
+        const authUser = async () => {
+
+            const user = await userRegistry.methods.getUserByAdd(window.ethereum.selectedAddress).call();
+            console.log('user: ', user.userAddress, );
+            if(user.userAddress) {
+                router.push('/')
+            }
         }
+
+        authUser()
     })
 
     return <>
