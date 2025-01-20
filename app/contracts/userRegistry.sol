@@ -28,6 +28,11 @@ contract UserRegistry {
     // Array to store all users
     User[] private userList;
 
+    // Function to check if a user exists
+    function userExists(address _address) public view returns (bool) {
+        return bytes(users[_address].username).length > 0;
+    }
+
     // Function to register a new user
     function registerUser(
         string memory _username,
