@@ -17,27 +17,31 @@ function Wallet() {
         setUserInter,
         setPostContract,
         postContractAddress,
-        postContractABI
-
+        postContractABI,
+        connectToMetamask
     } = useAccountContext()
 
     const router = useRouter()
 
-    const authUser = (user) => {
-        if (user.id) {
+    const authUser = async (userContract, address) => {
+        const userExist =  await userContract.methods?.userExists(address)?.call()
+        if(userExist){
+            console.log(userExist)
+            const user = await userRegistry.methods.getUserByAdd(window.ethereum.selectedAddress).call();
             window.localStorage.setItem('privateKey', user.privateKey)
             window.localStorage.setItem('publicKey', user.publicKey)
             window.localStorage.setItem('username', user.username)
             window.localStorage.setItem('image', user.image)
             window.localStorage.setItem('id', user.id)
 
-            router.push('/')
+            // router.push('/')
         } else {
-            router.push("/account/register")
+            // router.push("/account/register")
         }
+
     }
 
-    const connectToMetamask = async () => {
+    const connec9tToMetamask = async () => {
         try {
             // Check if Metamask is installed
             if (typeof window.ethereum === 'undefined') {
@@ -61,14 +65,14 @@ function Wallet() {
             setUserRegistry(userContract);
             setUserInter(followContract)
             setPostContract(postContract)
-            const user = await userContract.methods.getUserByAdd(selectedAddress).call();
-            authUser(user)
-
-            router.push('/account/register')
+            console.log("first")
+            await authUser(userContract, selectedAddress)
+            
         } catch (error) {
             console.error(error);
         }
     };
+    // const user = await userContract.methods.getUserByAdd(selectedAddress).call();
 
     return (
         <>

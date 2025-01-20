@@ -5,11 +5,14 @@ import { makeStorageClient } from "../utils/storage";
 import crypto from "crypto";
 import generateBinaryTree from "../utils/genBinTree";
 import { useAccountContext } from "../account/context/AccountContext";
+import useIPFS from "../_hooks/ipfshook/useipfs";
 
 const Navbar = () => {
   const { postContract } = useAccountContext();
   const [image, setImage] = useState(null);
   const [contentID, setContentID] = useState("");
+
+  const { uploadToPinata, getIPFSUrl, isUploading, error } = useIPFS('pinata');
 
   const storeFiles = async (file) => {
     const files = [file];
@@ -91,81 +94,85 @@ const Navbar = () => {
     if (image) handleSubmit();
   }, [image]);
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     setImage(e.target.files[0]);
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    const cid = await uploadToPinata(file);
+    console.log("first", cid)
   };
 
   return (
-    <div className="navbar bg-base-100">
-      <div className="flex-1">
-        <a href="/" className="btn btn-ghost normal-case text-xl">
-          Turtl
-        </a>
-      </div>
-      <div className="flex-none">
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="1em"
-                viewBox="0 0 448 512"
-              >
-                <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-              </svg>
-              {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg> */}
-              {/* <span className="badge badge-sm indicator-item">8</span> */}
-            </div>
-          </label>
-          <div
-            tabIndex={0}
-            className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+    <div className="navbar bg-base-100 px-4 py-2 shadow-md">
+  <div className="flex-1">
+    <a href="/" className="btn btn-ghost normal-case text-xl font-semibold">
+      Turtl
+    </a>
+  </div>
+  
+  <div className="flex-none space-x-4">
+    {/* Upload Image Dropdown */}
+    <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle">
+        <div className="indicator">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="1.5em"
+            viewBox="0 0 448 512"
+            className="text-gray-800"
           >
-            <div className="card-body">
-              <span className="font-bold text-lg">Upload Image</span>
-              <div className="card-actions">
-                <label className="btn btn-primary btn-block">
-                  <input
-                    type="file"
-                    className="hidden"
-                    onChange={handleChange}
-                    required={true}
-                  />
-                  <span className="">Upload</span>
-                </label>
-              </div>
-            </div>
-          </div>
+            <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+          </svg>
         </div>
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img
-                src={`https://api.dicebear.com/6.x/adventurer/svg?seed=${window.localStorage.getItem(
-                  "image"
-                )}`}
-                height="20"
-                width="20"
+      </label>
+      
+      <div
+        tabIndex={0}
+        className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow-lg rounded-lg"
+      >
+        <div className="card-body">
+          <span className="font-bold text-lg">Upload Image</span>
+          <div className="card-actions">
+            <label className="btn btn-primary btn-block">
+              <input
+                type="file"
+                className="hidden"
+                onChange={handleChange}
+                required={true}
               />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            {/* <li>
-              <Link className="justify-between" href="/account/profile" legacyBehavior>Profile</Link>
-            </li>
-            <li><a>Settings</a></li> */}
-            <li>
-              <Link href="/account/logout" legacyBehavior>
-                Logout
-              </Link>
-            </li>
-          </ul>
+              <span>Upload</span>
+            </label>
+          </div>
         </div>
       </div>
     </div>
+
+    {/* User Avatar Dropdown */}
+    <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-300">
+          <img
+            src={`https://api.dicebear.com/6.x/adventurer/svg?seed=${window.localStorage.getItem("image")}`}
+            alt="User Avatar"
+            className="object-cover w-full h-full"
+          />
+        </div>
+      </label>
+      
+      <ul
+        tabIndex={0}
+        className="menu menu-sm dropdown-content mt-3 p-2 shadow-lg bg-base-100 rounded-box w-52"
+      >
+        <li>
+          <Link href="/account/logout" legacyBehavior>
+            <a className="text-red-500">Logout</a>
+          </Link>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
   );
 };
 

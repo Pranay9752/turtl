@@ -1286,258 +1286,277 @@ export const AccountProvider = ({ children }) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const router = useRouter();
 
-  const contractAddress = "0xa53404Dd1b1E7b89b6e123b74423f233C2cB7e0b";
+  const contractAddress = "0x050cc84e75D593cf1538871872F4B3db9b07a8c3";
   const contractABI = [
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "string",
-          name: "_username",
-          type: "string",
+          "internalType": "string",
+          "name": "_username",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "_image",
-          type: "string",
+          "internalType": "string",
+          "name": "_image",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "_publicKey",
-          type: "string",
+          "internalType": "string",
+          "name": "_publicKey",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "_privateKey",
-          type: "string",
-        },
+          "internalType": "string",
+          "name": "_privateKey",
+          "type": "string"
+        }
       ],
-      name: "registerUser",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
+      "name": "registerUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
-      anonymous: false,
-      inputs: [
+      "anonymous": false,
+      "inputs": [
         {
-          indexed: true,
-          internalType: "address",
-          name: "userAddress",
-          type: "address",
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
         },
         {
-          indexed: false,
-          internalType: "string",
-          name: "username",
-          type: "string",
+          "indexed": false,
+          "internalType": "string",
+          "name": "username",
+          "type": "string"
         },
         {
-          indexed: false,
-          internalType: "string",
-          name: "image",
-          type: "string",
+          "indexed": false,
+          "internalType": "string",
+          "name": "image",
+          "type": "string"
         },
         {
-          indexed: false,
-          internalType: "string",
-          name: "publicKey",
-          type: "string",
+          "indexed": false,
+          "internalType": "string",
+          "name": "publicKey",
+          "type": "string"
         },
         {
-          indexed: false,
-          internalType: "string",
-          name: "privateKey",
-          type: "string",
+          "indexed": false,
+          "internalType": "string",
+          "name": "privateKey",
+          "type": "string"
         },
         {
-          indexed: false,
-          internalType: "uint256",
-          name: "id",
-          type: "uint256",
-        },
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
       ],
-      name: "UserRegistered",
-      type: "event",
+      "name": "UserRegistered",
+      "type": "event"
     },
     {
-      inputs: [],
-      name: "getAllUsers",
-      outputs: [
+      "inputs": [],
+      "name": "getAllUsers",
+      "outputs": [
         {
-          components: [
+          "components": [
             {
-              internalType: "string",
-              name: "username",
-              type: "string",
+              "internalType": "string",
+              "name": "username",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "image",
-              type: "string",
+              "internalType": "string",
+              "name": "image",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "publicKey",
-              type: "string",
+              "internalType": "string",
+              "name": "publicKey",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "privateKey",
-              type: "string",
+              "internalType": "string",
+              "name": "privateKey",
+              "type": "string"
             },
             {
-              internalType: "uint256",
-              name: "id",
-              type: "uint256",
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
             },
             {
-              internalType: "address",
-              name: "userAddress",
-              type: "address",
-            },
+              "internalType": "address",
+              "name": "userAddress",
+              "type": "address"
+            }
           ],
-          internalType: "struct UserRegistry.User[]",
-          name: "",
-          type: "tuple[]",
-        },
+          "internalType": "struct UserRegistry.User[]",
+          "name": "",
+          "type": "tuple[]"
+        }
       ],
-      stateMutability: "view",
-      type: "function",
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      inputs: [],
-      name: "getUser",
-      outputs: [
+      "inputs": [],
+      "name": "getUser",
+      "outputs": [
         {
-          internalType: "string",
-          name: "",
-          type: "string",
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "",
-          type: "string",
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "",
-          type: "string",
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "",
-          type: "string",
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         },
         {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         },
         {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
       ],
-      stateMutability: "view",
-      type: "function",
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "address",
-          name: "_address",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
       ],
-      name: "getUserByAdd",
-      outputs: [
+      "name": "getUserByAdd",
+      "outputs": [
         {
-          components: [
+          "components": [
             {
-              internalType: "string",
-              name: "username",
-              type: "string",
+              "internalType": "string",
+              "name": "username",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "image",
-              type: "string",
+              "internalType": "string",
+              "name": "image",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "publicKey",
-              type: "string",
+              "internalType": "string",
+              "name": "publicKey",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "privateKey",
-              type: "string",
+              "internalType": "string",
+              "name": "privateKey",
+              "type": "string"
             },
             {
-              internalType: "uint256",
-              name: "id",
-              type: "uint256",
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
             },
             {
-              internalType: "address",
-              name: "userAddress",
-              type: "address",
-            },
+              "internalType": "address",
+              "name": "userAddress",
+              "type": "address"
+            }
           ],
-          internalType: "struct UserRegistry.User",
-          name: "",
-          type: "tuple",
-        },
+          "internalType": "struct UserRegistry.User",
+          "name": "",
+          "type": "tuple"
+        }
       ],
-      stateMutability: "view",
-      type: "function",
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "address",
-          name: "_address",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
       ],
-      name: "getUserData",
-      outputs: [
+      "name": "getUserData",
+      "outputs": [
         {
-          internalType: "string",
-          name: "",
-          type: "string",
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "",
-          type: "string",
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "",
-          type: "string",
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "",
-          type: "string",
+          "internalType": "string",
+          "name": "",
+          "type": "string"
         },
         {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         },
         {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
       ],
-      stateMutability: "view",
-      type: "function",
+      "stateMutability": "view",
+      "type": "function"
     },
-  ];
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "userExists",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
   const followContractAddress = "0xAB3b6d77EC6E3411F45B9c0950bd76d63c545AF7";
   const followContractABI = [
     {
@@ -1828,21 +1847,26 @@ export const AccountProvider = ({ children }) => {
     },
   ];
 
+  const authUser = async (userContract, address) => {
+    const userExist = await userContract.methods?.userExists(address)?.call()
+    if (userExist) {
+      console.log(userExist)
+      const user = await userContract.methods
+        .getUserByAdd(address)
+        .call();
+        console.log(user)
+      window.localStorage.setItem('privateKey', user.privateKey)
+      window.localStorage.setItem('publicKey', user.publicKey)
+      window.localStorage.setItem('username', user.username)
+      window.localStorage.setItem('image', user.image)
+      window.localStorage.setItem('id', user.id)
 
-  const authUser = async (user) => {
-    if (!user) return;
-    
-    if (user.id) {
-      localStorage.setItem("privateKey", user.privateKey);
-      localStorage.setItem("publicKey", user.publicKey);
-      localStorage.setItem("username", user.username);
-      localStorage.setItem("image", user.image);
-      localStorage.setItem("id", user.id);
-      router.push("/");
+      router.push('/')
     } else {
-      router.push("/account/register");
+      router.push("/account/register")
     }
-  };
+
+  }
 
   const connectToMetamask = async () => {
     try {
@@ -1852,7 +1876,7 @@ export const AccountProvider = ({ children }) => {
 
       await window.ethereum.request({ method: "eth_requestAccounts" });
       const selectedAddress = window.ethereum.selectedAddress;
-      
+
       if (!selectedAddress) {
         throw new Error("Metamask is not connected to any account.");
       }
@@ -1876,13 +1900,10 @@ export const AccountProvider = ({ children }) => {
       setUserInter(followContract);
       setPostContract(postContract);
 
-      const user = await userContract.methods
-        .getUserByAdd(selectedAddress)
-        .call();
-      
-      return user;
+      await authUser(userContract, selectedAddress)
+
     } catch (error) {
-      console.error("Metamask connection error:", error);
+      console.log("Metamask connection error:", error);
       return null;
     }
   };
@@ -1896,7 +1917,7 @@ export const AccountProvider = ({ children }) => {
         }
         setIsInitialized(true);
       };
-      
+
       init();
     }
   }, [isInitialized]);
@@ -1918,6 +1939,7 @@ export const AccountProvider = ({ children }) => {
         setPostContract,
         postContractAddress,
         postContractABI,
+        connectToMetamask
       }}
     >
       {children}
