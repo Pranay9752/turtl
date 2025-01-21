@@ -1557,294 +1557,294 @@ export const AccountProvider = ({ children }) => {
       "type": "function"
     }
   ]
-  const followContractAddress = "0xAB3b6d77EC6E3411F45B9c0950bd76d63c545AF7";
+  const followContractAddress = "0x2daFaB1607B62ec5C28891d9182aA01749fB5B0c";
   const followContractABI = [
     {
-      inputs: [
+      "anonymous": false,
+      "inputs": [
         {
-          internalType: "address",
-          name: "follower",
-          type: "address",
+          "indexed": true,
+          "internalType": "address",
+          "name": "follower",
+          "type": "address"
         },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "followee",
+          "type": "address"
+        }
       ],
-      name: "acceptFollowRequest",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
+      "name": "AcceptFollowRequest",
+      "type": "event"
     },
     {
-      anonymous: false,
-      inputs: [
+      "anonymous": false,
+      "inputs": [
         {
-          indexed: true,
-          internalType: "address",
-          name: "follower",
-          type: "address",
+          "indexed": true,
+          "internalType": "address",
+          "name": "follower",
+          "type": "address"
         },
         {
-          indexed: true,
-          internalType: "address",
-          name: "followee",
-          type: "address",
-        },
+          "indexed": true,
+          "internalType": "address",
+          "name": "followee",
+          "type": "address"
+        }
       ],
-      name: "AcceptFollowRequest",
-      type: "event",
+      "name": "FollowRequest",
+      "type": "event"
     },
     {
-      inputs: [
+      "anonymous": false,
+      "inputs": [
         {
-          internalType: "address",
-          name: "followee",
-          type: "address",
+          "indexed": true,
+          "internalType": "address",
+          "name": "follower",
+          "type": "address"
         },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "followee",
+          "type": "address"
+        }
       ],
-      name: "follow",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
+      "name": "Unfollow",
+      "type": "event"
     },
     {
-      anonymous: false,
-      inputs: [
+      "inputs": [
         {
-          indexed: true,
-          internalType: "address",
-          name: "follower",
-          type: "address",
-        },
-        {
-          indexed: true,
-          internalType: "address",
-          name: "followee",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "follower",
+          "type": "address"
+        }
       ],
-      name: "FollowRequest",
-      type: "event",
+      "name": "acceptFollowRequest",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "address",
-          name: "followee",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "followee",
+          "type": "address"
+        }
       ],
-      name: "unfollow",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
+      "name": "follow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
-      anonymous: false,
-      inputs: [
+      "inputs": [
         {
-          indexed: true,
-          internalType: "address",
-          name: "follower",
-          type: "address",
-        },
-        {
-          indexed: true,
-          internalType: "address",
-          name: "followee",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
       ],
-      name: "Unfollow",
-      type: "event",
+      "name": "getFollowRequests",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "address",
-          name: "user",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
       ],
-      name: "getFollowers",
-      outputs: [
+      "name": "getFollowers",
+      "outputs": [
         {
-          internalType: "address[]",
-          name: "",
-          type: "address[]",
-        },
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
       ],
-      stateMutability: "view",
-      type: "function",
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "address",
-          name: "user",
-          type: "address",
+          "internalType": "address",
+          "name": "follower",
+          "type": "address"
         },
-      ],
-      name: "getFollowRequests",
-      outputs: [
         {
-          internalType: "address[]",
-          name: "",
-          type: "address[]",
-        },
+          "internalType": "address",
+          "name": "followee",
+          "type": "address"
+        }
       ],
-      stateMutability: "view",
-      type: "function",
+      "name": "isFollowingUser",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "address",
-          name: "follower",
-          type: "address",
-        },
-        {
-          internalType: "address",
-          name: "followee",
-          type: "address",
-        },
+          "internalType": "address",
+          "name": "followee",
+          "type": "address"
+        }
       ],
-      name: "isFollowingUser",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
+      "name": "unfollow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
   ];
 
-  const postContractAddress = "0xA3439005Ee3E03f172f6E73B5157bBDdFEc2Da4D";
+  const postContractAddress = "0xBB4d6caf7765F3366Ed2Ba05DbB336e5BE3d24AD";
   const postContractABI = [
     {
-      anonymous: false,
-      inputs: [
+      "anonymous": false,
+      "inputs": [
         {
-          indexed: true,
-          internalType: "address",
-          name: "creator",
-          type: "address",
+          "indexed": true,
+          "internalType": "address",
+          "name": "creator",
+          "type": "address"
         },
         {
-          indexed: true,
-          internalType: "uint256",
-          name: "postIndex",
-          type: "uint256",
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "postIndex",
+          "type": "uint256"
         },
         {
-          indexed: false,
-          internalType: "uint256",
-          name: "timestamp",
-          type: "uint256",
-        },
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
       ],
-      name: "PostCreated",
-      type: "event",
+      "name": "PostCreated",
+      "type": "event"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "string",
-          name: "_userId",
-          type: "string",
+          "internalType": "string",
+          "name": "_userId",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "_postName",
-          type: "string",
+          "internalType": "string",
+          "name": "_postName",
+          "type": "string"
         },
         {
-          internalType: "string",
-          name: "_cid",
-          type: "string",
-        },
+          "internalType": "string",
+          "name": "_cid",
+          "type": "string"
+        }
       ],
-      name: "createPost",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
+      "name": "createPost",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
-      inputs: [
+      "inputs": [
         {
-          internalType: "address[]",
-          name: "addresses",
-          type: "address[]",
-        },
+          "internalType": "address[]",
+          "name": "addresses",
+          "type": "address[]"
+        }
       ],
-      name: "getLatestPosts",
-      outputs: [
+      "name": "getLatestPosts",
+      "outputs": [
         {
-          components: [
+          "components": [
             {
-              internalType: "string",
-              name: "userId",
-              type: "string",
+              "internalType": "string",
+              "name": "userId",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "postName",
-              type: "string",
+              "internalType": "string",
+              "name": "postName",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "cid",
-              type: "string",
+              "internalType": "string",
+              "name": "cid",
+              "type": "string"
             },
             {
-              internalType: "uint256",
-              name: "date",
-              type: "uint256",
-            },
+              "internalType": "uint256",
+              "name": "date",
+              "type": "uint256"
+            }
           ],
-          internalType: "struct PostContract.Post[]",
-          name: "",
-          type: "tuple[]",
-        },
+          "internalType": "struct PostContract.Post[]",
+          "name": "",
+          "type": "tuple[]"
+        }
       ],
-      stateMutability: "view",
-      type: "function",
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      inputs: [],
-      name: "getUserPosts",
-      outputs: [
+      "inputs": [],
+      "name": "getUserPosts",
+      "outputs": [
         {
-          components: [
+          "components": [
             {
-              internalType: "string",
-              name: "userId",
-              type: "string",
+              "internalType": "string",
+              "name": "userId",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "postName",
-              type: "string",
+              "internalType": "string",
+              "name": "postName",
+              "type": "string"
             },
             {
-              internalType: "string",
-              name: "cid",
-              type: "string",
+              "internalType": "string",
+              "name": "cid",
+              "type": "string"
             },
             {
-              internalType: "uint256",
-              name: "date",
-              type: "uint256",
-            },
+              "internalType": "uint256",
+              "name": "date",
+              "type": "uint256"
+            }
           ],
-          internalType: "struct PostContract.Post[]",
-          name: "",
-          type: "tuple[]",
-        },
+          "internalType": "struct PostContract.Post[]",
+          "name": "",
+          "type": "tuple[]"
+        }
       ],
-      stateMutability: "view",
-      type: "function",
-    },
+      "stateMutability": "view",
+      "type": "function"
+    }
   ];
 
   const authUser = async (userContract, address) => {
