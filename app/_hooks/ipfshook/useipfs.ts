@@ -26,7 +26,7 @@ import { GatewayType, IPFSHookReturn, PinataResponse } from './ipfs_types';
       setError(null);
   
       try {
-        validateImage(file);
+        // validateImage(file);
   
         const formData = new FormData();
         formData.append('file', file);

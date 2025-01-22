@@ -1286,7 +1286,7 @@ export const AccountProvider = ({ children }) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const router = useRouter();
 
-  const contractAddress = "0x050cc84e75D593cf1538871872F4B3db9b07a8c3";
+  const contractAddress = "0x7D0D738F99AB89165a308Fb6D529b91a21c83034";
   const contractABI = [
     {
       "inputs": [
@@ -1557,8 +1557,21 @@ export const AccountProvider = ({ children }) => {
       "type": "function"
     }
   ]
-  const followContractAddress = "0x2daFaB1607B62ec5C28891d9182aA01749fB5B0c";
+  const followContractAddress = "0xf88101d823E4bc3358e5f3B9541DE43C311d637a";
   const followContractABI = [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "follower",
+          "type": "address"
+        }
+      ],
+      "name": "acceptFollowRequest",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
     {
       "anonymous": false,
       "inputs": [
@@ -1579,6 +1592,19 @@ export const AccountProvider = ({ children }) => {
       "type": "event"
     },
     {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "followee",
+          "type": "address"
+        }
+      ],
+      "name": "follow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "anonymous": false,
       "inputs": [
         {
@@ -1596,6 +1622,19 @@ export const AccountProvider = ({ children }) => {
       ],
       "name": "FollowRequest",
       "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "followee",
+          "type": "address"
+        }
+      ],
+      "name": "unfollow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
       "anonymous": false,
@@ -1620,37 +1659,11 @@ export const AccountProvider = ({ children }) => {
       "inputs": [
         {
           "internalType": "address",
-          "name": "follower",
-          "type": "address"
-        }
-      ],
-      "name": "acceptFollowRequest",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "followee",
-          "type": "address"
-        }
-      ],
-      "name": "follow",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
           "name": "user",
           "type": "address"
         }
       ],
-      "name": "getFollowRequests",
+      "name": "getFollowers",
       "outputs": [
         {
           "internalType": "address[]",
@@ -1669,7 +1682,7 @@ export const AccountProvider = ({ children }) => {
           "type": "address"
         }
       ],
-      "name": "getFollowers",
+      "name": "getFollowRequests",
       "outputs": [
         {
           "internalType": "address[]",
@@ -1703,24 +1716,34 @@ export const AccountProvider = ({ children }) => {
       ],
       "stateMutability": "view",
       "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "followee",
-          "type": "address"
-        }
-      ],
-      "name": "unfollow",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
     }
   ];
 
-  const postContractAddress = "0xBB4d6caf7765F3366Ed2Ba05DbB336e5BE3d24AD";
+  const postContractAddress = "0x84cec9F9235215ff01321A5A509E0Af0bd096D26";
   const postContractABI = [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_userId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_postName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_cid",
+          "type": "string"
+        }
+      ],
+      "name": "createPost",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
     {
       "anonymous": false,
       "inputs": [
@@ -1745,29 +1768,6 @@ export const AccountProvider = ({ children }) => {
       ],
       "name": "PostCreated",
       "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_userId",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_postName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_cid",
-          "type": "string"
-        }
-      ],
-      "name": "createPost",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
     },
     {
       "inputs": [
@@ -1849,6 +1849,7 @@ export const AccountProvider = ({ children }) => {
 
   const authUser = async (userContract, address) => {
     const userExist = await userContract.methods?.userExists(address)?.call()
+    console.log('userExist: ', userExist);
     if (userExist) {
       console.log(userExist)
       const user = await userContract.methods

@@ -34,9 +34,9 @@ function Wallet() {
             window.localStorage.setItem('image', user.image)
             window.localStorage.setItem('id', user.id)
 
-            // router.push('/')
+            router.push('/')
         } else {
-            // router.push("/account/register")
+            router.push("/account/register")
         }
 
     }

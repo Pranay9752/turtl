@@ -18,11 +18,13 @@ export default function Home() {
   });
 
   const loadPosts = async () => {
+    
     const followers = await userInter.methods.getFollowers(window.ethereum.selectedAddress).call();
+    console.log('followers: ', followers);
     const promises = followers.map(async (address) => {
       const user = await userRegistry.methods.getUserByAdd(address).call();
       return {
-        id: user.id,
+        id: user.userAddress,
         username: user.username,
         image: user.image,
       };
@@ -31,6 +33,7 @@ export default function Home() {
     const users = results
     .filter((result) => result.status === 'fulfilled')
     .map((result) => result.value);
+    console.log('users: ', users);
 
     setUserData((prev) => ({
       ...prev,
@@ -39,7 +42,8 @@ export default function Home() {
       image: users?.[0]?.image || '',
     }));
 
-    const posts = await Promise.all(users.map((user) => postContract.methods.getLatestPostsForUser(user.id).call()));
+    const posts = await Promise.all(users.map((user) => postContract.methods.getLatestPosts(followers).call()));
+    console.log('posts: ', posts);
     setUserData((prev) => ({
       ...prev,
       posts: posts,
@@ -59,19 +63,19 @@ export default function Home() {
 
   useEffect(() => {
     loadPosts();
-  }, []);
-
+  }, [userInter, userRegistry, postContract]);
+  
   return (
     <>
-      <div>
+      <div className='h-[100svh]'>
         <Navbar />
-        <div>
-          <div className="grid grid-cols-3 gap-2 divide-x divide-gray-400">
-            <div className="col-span-1 mt-1">
+        <div className='h-full'>
+          <div className="grid grid-cols-[30rem,70%] gap-2 divide-x divide-gray-400 h-full">
+            <div className="mt-1">
               <FollowRequests />
               <FollowUsers />
             </div>
-            <div className="col-span-2">
+            <div className="">
               <p className="btn btn-ghost normal-case text-xl">Posts</p>
               <div className="max-w-5xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-2 gap-4 sm:grid-cols-2 lg:grid-cols-2">
