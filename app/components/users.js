@@ -57,8 +57,7 @@ const FollowUsers = () => {
         console.error("Error fetching follow requests:", error);
       }
     };
-
-    fetchFollower();
+    if (userInter) fetchFollower();
   }, [userInter]);
 
   return (
